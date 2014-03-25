@@ -1,0 +1,19 @@
+\name{genotype}
+\alias{genotype}
+\title{genotype}
+\usage{
+  genotype(x)
+}
+\arguments{
+  \item{x}{}
+}
+\value{
+  genotype
+}
+\description{
+  genotype
+}
+\author{
+  martin
+}
+

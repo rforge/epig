@@ -1,0 +1,19 @@
+\name{coverage}
+\alias{coverage}
+\title{coverage}
+\usage{
+  coverage(object)
+}
+\arguments{
+  \item{object}{}
+}
+\value{
+  coverage
+}
+\description{
+  coverage
+}
+\author{
+  martin
+}
+

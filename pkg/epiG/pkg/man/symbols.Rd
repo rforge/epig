@@ -1,0 +1,19 @@
+\name{symbols}
+\alias{symbols}
+\title{symbols}
+\usage{
+  symbols(g)
+}
+\arguments{
+  \item{g}{}
+}
+\value{
+  symbols
+}
+\description{
+  symbols
+}
+\author{
+  martin
+}
+

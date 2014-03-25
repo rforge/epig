@@ -1,0 +1,24 @@
+Package: epiG
+Type: Package
+Title: DNA methylation and SNP calling for bisulfite sequencing data
+Version: 0.0.2
+Date: 2013-11-11
+Author: Martin Vincent
+Maintainer: Martin Vincent <vincent@math.ku.dk>
+Description: DNA methylation and SNP calling for bisulfite sequencing data.
+URL: 
+License: GPL (>= 2)
+LazyLoad: yes
+Depends:
+    R (>= 3.0.0),
+    Matrix,
+    RcppProgress,
+    RcppArmadillo,
+LinkingTo: Rcpp,
+    RcppProgress,
+    RcppArmadillo
+Collate:
+    'epiG_fit.R'
+    'epiG_fetch.R'
+    'epiG_navigate.R'
+    'epiG_summary.R'

@@ -1,0 +1,19 @@
+\name{end.epiG}
+\alias{end.epiG}
+\title{end}
+\usage{
+  end.epiG(object)
+}
+\arguments{
+  \item{object}{}
+}
+\value{
+  numeric
+}
+\description{
+  end
+}
+\author{
+  martin
+}
+

@@ -1,0 +1,19 @@
+\name{methylation}
+\alias{methylation}
+\title{methylation}
+\usage{
+  methylation(x)
+}
+\arguments{
+  \item{x}{}
+}
+\value{
+  methylation
+}
+\description{
+  methylation
+}
+\author{
+  martin
+}
+

@@ -1,0 +1,19 @@
+\name{occupancy}
+\alias{occupancy}
+\title{occupancy}
+\usage{
+  occupancy(x)
+}
+\arguments{
+  \item{x}{}
+}
+\value{
+  occupancy
+}
+\description{
+  occupancy
+}
+\author{
+  martin
+}
+

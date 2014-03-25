@@ -1,0 +1,19 @@
+\name{locate_variation}
+\alias{locate_variation}
+\title{locate_variation}
+\usage{
+  locate_variation(x)
+}
+\arguments{
+  \item{x}{}
+}
+\value{
+  locate_variation
+}
+\description{
+  locate_variation
+}
+\author{
+  martin
+}
+
