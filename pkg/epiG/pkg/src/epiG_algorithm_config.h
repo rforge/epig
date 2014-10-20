@@ -58,18 +58,19 @@ public:
 
 	const t_count max_iterations; //max number of iterations per optim loop
 
-	const t_count max_alleles; //maximal number of alleles in model
-
-	const double allele_occupancy_weight;
-
-    const field<Col<double> > log_prior;
-
-	const double allele_match_prob_threshold; // in [0,1]
-
 	const t_models fwd_model;
 	const t_models rev_model;
 
+	const double sequence_quality_adjust;
+
     const t_count reads_hard_limit;
+
+    const double haplo_prior;
+    const double ref_prior;
+
+    const field<arma::vec> genotype_priors;
+
+    const t_position min_overlap_length;
 
 	bool const verbose;
 
@@ -77,19 +78,21 @@ public:
 
 			max_iterations(getConfigAttribute<t_count>(config, "max_iterations")),
 
-			max_alleles(getConfigAttribute<t_count>(config, "max_alleles")),
-
-			allele_occupancy_weight(getConfigAttribute<double>(config, "allele_occupancy_weight")),
-
-			log_prior(getConfigList<arma::vec>(config, "log_prior")),
-
-			allele_match_prob_threshold(getConfigAttribute<double>(config, "allele_match_prob")),
-
 			fwd_model(getConfigList<t_model>(config, "fwd_model")),
 
 			rev_model(getConfigList<t_model>(config, "rev_model")),
 
+			sequence_quality_adjust(getConfigAttribute<double>(config, "sequence_quality_adjust")),
+
             reads_hard_limit(getConfigAttribute<t_count>(config, "reads_hard_limit")),
+
+            haplo_prior(getConfigAttribute<double>(config, "haplo_prior")),
+
+            ref_prior(getConfigAttribute<double>(config, "ref_prior")),
+
+            genotype_priors(getConfigList<arma::vec>(config, "log_prior")),
+
+            min_overlap_length(getConfigAttribute<t_position>(config, "min_overlap_length")),
 
 			verbose(getConfigAttribute<bool>(config, "verbose")) {
 	}

@@ -4,7 +4,6 @@
 \usage{
   epiG(filename, refGenom_filename, altGenom_filename,
     refname, start, end, max_threads = 8L,
-    chunk.size = 500, chunk.method = "reads",
     config = msbs.standard.config)
 }
 \arguments{
@@ -21,10 +20,6 @@
   \item{end}{}
 
   \item{max_threads}{}
-
-  \item{chunk.size}{}
-
-  \item{chunk.method}{}
 
   \item{config}{}
 }

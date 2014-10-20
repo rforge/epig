@@ -50,11 +50,15 @@
 #include "types.hpp"
 #include "bamReader.hpp"
 #include "epiG_algorithm_config.h"
-#include "reference_genome_prior.hpp"
 #include "alignment_data.hpp"
-#include "genotype_iterator.hpp"
-#include "optimizer.hpp"
-#include "chunk_optimizer.hpp"
+#include "reference_genome_prior.hpp"
+#include "haplo_chain_optimizer.hpp"
+#include "epig_genotype_optimizer.hpp"
+#include "chunk_haplo_chain_optimizer.hpp"
 
-//R interface
-#include "epiG_R_interface.hpp"
+//// R interface
+#include "epiG_haplo_R_interface.hpp"
+#include "epiG_fetch_R_interface.hpp"
+
+// vector search
+#include "vector_search.hpp"

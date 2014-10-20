@@ -31,13 +31,14 @@ print.epiG <- function(x, ...) {
         if("chunks" %in% class(x)) {
             message(paste("Epigenotype model (estimated by epiG version ", x[[1]]$epiG_version, ")", sep=""))
             message()
-            message("  ",paste(length(x), " chunks covering base position [", min(start(x)), ", ", max(end(x)), "]", " on ", x[[1]]$ref_name, ", ", sum(sapply(x, function(z) z$length)), " bases in total.", sep=""))
+			#TODO list chunks
+           # message("  ",paste(length(x), " chunks covering base position [", min(start(x)), ", ", max(end(x)), "]", " on ", x[[1]]$refname, ", ", sum(sapply(x, function(z) z$length)), " bases in total.", sep=""))
             message()
             message("  ",paste("Estimation was finalized ",x[[1]]$date, sep=""))
          } else {
             message(paste("Epigenotype model (estimated by epiG version ", x$epiG_version, ")", sep=""))
             message()
-            message(paste("  Cover base position [", start(x), ", ", end(x), "]", " on ", x$ref_name, ", ", x$length, " bases in total.", sep=""))
+            message(paste("  Cover base position [", start(x), ", ", end(x), "]", " on ", x$refname, ", ", length(x), " bases in total.", sep=""))
             message()
             message("  ",paste("Estimation was finalized ",x$date, sep=""))
         }

@@ -76,6 +76,7 @@ static int fetch_info_func(const bam1_t *b, void *data)
     int length = b->core.l_qseq;
     t_position pos = b->core.pos;
 
+
     infos->push_back(read_info(pos,length));
 
     return 0;

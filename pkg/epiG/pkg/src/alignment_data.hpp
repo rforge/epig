@@ -26,6 +26,7 @@ public:
 	t_base_subsets const base_subsets; //vector of size (length of sequence)
 
 	arma::field<arma::mat> const loglike_terms; //field of size (number of reads) x 2
+	arma::field<arma::mat> const like_terms; //field of size (number of reads) x 2
 
 	t_loglike_vector const log_pmax; //vector of size (number of reads)
 
@@ -67,6 +68,7 @@ inline alignment_data::alignment_data(AlgorithmConfiguration const& config, std:
 
 	t_base_subsets subsets(sequence_length, arma::fill::zeros);
 	arma::field<arma::mat> tmp_loglike_terms(n_reads, 2);
+	arma::field<arma::mat> tmp_like_terms(n_reads, 2);
 
 	arma::field<t_indices> tmp_read_numbers(sequence_length);
 
@@ -87,6 +89,9 @@ inline alignment_data::alignment_data(AlgorithmConfiguration const& config, std:
 		tmp_loglike_terms(i, 0).set_size(L, 6);
 		tmp_loglike_terms(i, 1).set_size(L, 6);
 
+		tmp_like_terms(i, 0).set_size(L, 6);
+		tmp_like_terms(i, 1).set_size(L, 6);
+
 		for (t_position j = reads_start_postions(i);
 				j <= reads_end_postions(i); ++j) {
 
@@ -102,12 +107,15 @@ inline alignment_data::alignment_data(AlgorithmConfiguration const& config, std:
 			t_position k = j - reads_start_postions(i);
 
 			t_base base = read.bases(k);
-			double epsilon = read.epsilon(k);
+			double epsilon = read.epsilon(k) * config.sequence_quality_adjust; //FIXME configable
 
 			if(base == 0) {
 				//base = N
 				tmp_loglike_terms(i, 0).row(k).fill(log(0.25));
 				tmp_loglike_terms(i, 1).row(k).fill(log(0.25));
+
+				tmp_like_terms(i, 0).row(k).fill(0.25);
+				tmp_like_terms(i, 1).row(k).fill(0.25);
 
 			} else {
 				//fwd strand
@@ -115,6 +123,9 @@ inline alignment_data::alignment_data(AlgorithmConfiguration const& config, std:
 
 				//rev strand
 				tmp_loglike_terms(i, 1).row(k) = log((1-4/static_cast<double>(3)*epsilon)*rev_model(L-1-k).row(base-1) + epsilon/static_cast<double>(3));
+
+				tmp_like_terms(i, 0).row(k) = (1-4/static_cast<double>(3)*epsilon)*fwd_model(k).row(base-1) + epsilon/static_cast<double>(3);
+				tmp_like_terms(i, 1).row(k) = (1-4/static_cast<double>(3)*epsilon)*rev_model(L-1-k).row(base-1) + epsilon/static_cast<double>(3);
 			}
 
 			//Position marks
@@ -127,10 +138,12 @@ inline alignment_data::alignment_data(AlgorithmConfiguration const& config, std:
 	//Set variables
 	const_cast<t_base_subsets&>(this->base_subsets) = subsets;
 	const_cast<arma::field<arma::mat>&>(this->loglike_terms) = tmp_loglike_terms;
+	const_cast<arma::field<arma::mat>&>(this->like_terms) = tmp_like_terms;
 	const_cast<field<t_indices>&>(this->read_numbres) = tmp_read_numbers;
 	const_cast<t_loglike_vector&>(this->log_pmax) = tmp_pmax;
 
 }
+
 
 
 

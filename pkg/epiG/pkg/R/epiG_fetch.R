@@ -73,18 +73,17 @@ fetch_reads_info <- function(filename, refname, start, end) {
 #' @author martin
 #' @export
 #' @useDynLib epiG r_epiG_fetch_reads
-fetch_reads <- function(object) {
+fetch.reads <- function(object) {
 	
 	if(paste(class(object), collapse = ".") == "epiG") {
-		reads <- .Call(r_epiG_fetch_reads, object$filename, object$ref_name, as.integer(object$chunks_start + object$offset), as.integer(object$chunks_end + object$offset))
+		reads <- .Call(r_epiG_fetch_reads, object$filename, object$refname, start(object), end(object))
 		
 		reads$positions <- reads$positions - object$offset
-		object$reads <- list()
-		object$reads[[1]] <- reads #TODO remove list
+		object$reads <- reads
 	
 	} else if(paste(class(object), collapse = ".") == "epiG.chunks") {
 		
-		object <- lapply(object, fetch_reads)
+		object <- lapply(object, fetch.reads)
 		class(object) <- c("epiG", "chunks")
 		
 	} else {
@@ -105,13 +104,13 @@ fetch_reads <- function(object) {
 #' @author martin
 #' @export
 #' @useDynLib epiG r_epiG_read_fasta
-fetch_ref <- function(object, filename) {
+fetch_ref <- function(object) {
 	
 	if(paste(class(object), collapse = ".") == "epiG") {
-		object$ref <- .Call(r_epiG_read_fasta, filename, object$ref_name, object$offset, object$length)
+		object$ref <- .Call(r_epiG_read_fasta, object$config$ref.filename, object$refname, start(object), length(object))
 		
 	} else if(paste(class(object), collapse = ".") == "epiG.chunks") {
-		object <- lapply(object, function(x) fetch_ref(x, filename))
+		object <- lapply(object, function(x) fetch_ref(x))
 		class(object) <- c("epiG", "chunks")
 		
 	} else {
@@ -132,13 +131,13 @@ fetch_ref <- function(object, filename) {
 #' @author martin
 #' @export
 #' @useDynLib epiG r_epiG_read_fasta
-fetch_alt <- function(object, filename) {
+fetch_alt <- function(object) {
 	
 	if(paste(class(object), collapse = ".") == "epiG") {
-		object$alt <- .Call(r_epiG_read_fasta, filename, object$ref_name, object$offset, object$length)
+		object$alt <- .Call(r_epiG_read_fasta, object$config$alt.filename, object$refname, start(object), length(object))
 	
 	} else if(paste(class(object), collapse = ".") == "epiG.chunks") {
-		object <- lapply(object, function(x) fetch_alt(x, filename))
+		object <- lapply(object, function(x) fetch_alt(x))
 		class(object) <- c("epiG", "chunks")
 		
 	} else {

@@ -18,7 +18,9 @@ LinkingTo: Rcpp,
     RcppProgress,
     RcppArmadillo
 Collate:
-    'epiG_fit.R'
+    'epiG_haplo_fit.R'
     'epiG_fetch.R'
-    'epiG_navigate.R'
     'epiG_summary.R'
+    'epiG_navigate.R'
+    'epiG_config.R'
+    'epiG_locate.R'

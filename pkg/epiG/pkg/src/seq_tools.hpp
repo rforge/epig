@@ -141,7 +141,7 @@ t_seq_bases create_bases_vector(std::string const& bases_str) {
 
 /*
   	subsets coding
-
+#   0 Ø
 #	1 R
 #	2 A1
 # 	3 A2
@@ -167,6 +167,34 @@ t_seq_bases create_bases_vector(std::string const& bases_str) {
 
 	0 = N
 */
+bool contain(char s, char base) {
+
+	if(base == 0 || s == 0) {
+		return false;
+	}
+
+	switch (base) {
+
+	case 1:
+		return s == 1 || s == 6 || s == 8 || s == 9 || s == 11 || s == 13 || s == 14 || s == 15;
+
+	case 2:
+		return s == 2 || s == 5 || s == 7 || s == 9 || s == 11 || s == 12 || s == 13 || s == 15;
+
+	case 3:
+		return s == 3 || s == 5 || s == 8 || s == 10 || s == 12 || s == 13 || s == 14 || s == 15;
+
+	case 4:
+		return s == 4 || s == 6 || s == 7 || s == 10 || s == 11 || s == 12 || s == 13 || s == 15;
+
+	default:
+		throw std::runtime_error("contain - unknown base");
+		break;
+
+	}
+}
+
+
 char base_union(char subset, char base) {
 
 	if(base == 0) { //check if base = N
@@ -176,7 +204,7 @@ char base_union(char subset, char base) {
 	case 0: // empty set
 		return base;
 
-	case 1: //C
+	case 1:
 		switch (base) {
 		case 1:
 			return 1;
@@ -412,6 +440,32 @@ char base_union(char subset, char base) {
 		break;
 	}
 
+}
+
+char intersection(char s1, char s2) {
+
+	char r = 0;
+
+	for(char b = 1; b <= 4; ++b) {
+		if(contain(s1, b) && contain(s2, b)) {
+			r = base_union(r, b);
+		}
+	}
+
+	return r;
+}
+
+char subset_union(char s1, char s2) {
+
+	char r = s1;
+
+		for(char b = 1; b <= 4; ++b) {
+			if(contain(s2, b)) {
+				r = base_union(r, b);
+			}
+		}
+
+		return r;
 }
 
 

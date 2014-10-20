@@ -79,4 +79,85 @@ arma::u32 argmax(arma::Col<T> const& x) {
 	return j;
 }
 
+// Compute binomial distribution with p = 0.5 table
+// Row - total trials
+// Col - success
+arma::Mat<double> make_log_binom_half_table(unsigned int const N_max) {
+
+	arma::Col<double> tmp(N_max);
+	for(unsigned int n = 0; n < N_max; ++n) {
+		tmp(n) = log(n+1);
+	}
+
+	arma::Mat<double> table(N_max+1, N_max+1);
+
+	for(unsigned int n = 0; n <= N_max; ++n) {
+
+		table.row(n).fill(n * log(0.5));
+
+		for(unsigned int k = 1; k < n; ++k) {
+			table(n,k) += sum(tmp.subvec(k,n-1))-sum(tmp.subvec(0,n-k-1));
+		}
+	}
+
+	return table;
+}
+
+
+arma::uvec factor(arma::uvec const& x) {
+
+	arma::uvec levels = unique(x);
+
+	arma::uvec r(x.n_elem);
+
+	for(arma::uword i = 0; i < x.n_elem; ++i) {
+		arma::uvec level = find(levels == x(i), 1); //this will be a vector with 1 element
+		r(i) = level(0);
+	}
+
+	return r;
+}
+
+class base_counter {
+
+	arma::uvec number;
+
+public:
+
+	unsigned int const base;
+	unsigned int const n_dec; //number of decimals
+
+	base_counter(unsigned int const base, unsigned int n_dec) : number(n_dec), base(base), n_dec(n_dec) {}
+
+	void set_zero() {
+		number.zeros();
+	}
+
+	base_counter const& operator++() {
+
+		for(arma::uword i = 0; i < n_dec; ++i) {
+			number(i) = (number(i) + 1) % base;
+
+			if(number(i) != 0) {
+				break;
+			}
+		}
+
+		return *this;
+	}
+
+	unsigned int operator()(unsigned int i) const {
+		return number(i);
+	}
+
+	bool is_zero() const {
+		return accu(number != 0) == 0;
+	}
+
+	arma::uvec const get_number() const {
+		return number;
+	}
+
+};
+
 #endif /* MATH_TOOLS_HPP_ */

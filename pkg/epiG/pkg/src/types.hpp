@@ -28,9 +28,14 @@ typedef Col<t_base> t_seq_bases;
 
 typedef Col<double> t_epsilon_quality;
 
-typedef char t_epi_base; //coding 0 - Ø (No allele), 1 - C, 2 - G, 3 - A, 4 - T, 5 - C^me, 6 - G_me
-typedef Col<t_epi_base> t_genotype; // vector of length (max number of alleles)
-typedef Mat<t_epi_base> t_methylome; //(max number of alleles) x (length of sequence) //TODO try with sparse matrix
+typedef u32 t_haplochain;
+typedef Col<t_haplochain> t_haplotype;
+
+typedef char t_epi_base; //coding 0 - C, 1 - G, 2 - A, 3 - T, 4 - C^me, 5 - G_me
+typedef Col<t_epi_base> t_genotype;
+//TODO remove
+//typedef Col<t_epi_base> t_genotype; // vector of length (max number of alleles)
+//typedef Mat<t_epi_base> t_methylome; //(max number of alleles) x (length of sequence) //TODO try with sparse matrix
 
 /*
   	Subset coding
@@ -55,16 +60,12 @@ typedef Mat<t_epi_base> t_methylome; //(max number of alleles) x (length of sequ
 typedef char t_base_subset;
 typedef Col<t_base_subset> t_base_subsets;
 
-typedef char t_strand; // Coding : 0 - forward 1 - reverse
-typedef Col<t_strand> t_strands; // vector of length (number of reads)
-
-typedef unsigned int t_allele; //Extended allele indicator, element in 0, ..., max_alleles, max_alleles -> read unmatched
-typedef Col<t_allele> t_alleles;
+typedef int t_strand;
+typedef Col<t_strand> t_strands;
+const int strand_fwd = 0;
+const int strand_rev = 1;
 
 typedef Col<double> t_loglike_vector;
-
-typedef Col<int> t_local_allele_occupancy;
-typedef Mat<int> t_allele_occupancy; //matrix of size (max_allele+1) x (length of sequence)
 
 typedef Mat<double> t_model; //{C, G, A, T} x {C, G, A, T, C^me, G_me}
 typedef field<t_model> t_models;
