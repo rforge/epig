@@ -29,14 +29,12 @@
 #' @param end 
 #' @param max_threads 
 #' @param config 
-#' @returnType epiG
 #' @return fitted model
 #' 
 #' @author martin
 #' @export
-#' @useDynLib epiG r_epiG_fit_filename
-#' @useDynLib epiG r_epiG_fit_filename_chunks
-
+#' @useDynLib epiG r_epiG_haplo_fit_filename
+#' @useDynLib epiG r_epiG_haplo_fit_filename_chunks
 epiG <- function(filename, refname, start, end, max_threads = 8L, config, refGenom_filename = config$ref.filename, altGenom_filename = config$alt.filename) {
 	
 	if(start >= end) {
@@ -53,11 +51,12 @@ epiG <- function(filename, refname, start, end, max_threads = 8L, config, refGen
 		s <- compute_chunk_positions(filename, refname, as.integer(start), as.integer(end), as.integer(config$chunk_size))
 		
 		if(length(s) >= 2) {
-		
 			chunks_start <- s[1:(length(s)-1)]
 			chunks_end <- s[2:length(s)]-1L
 			chunks_start[1] <- start
-			res <- .Call(r_epiG_haplo_fit_filename_chunks, filename, refGenom_filename, altGenom_filename, refname,  as.integer(chunks_start),  as.integer(chunks_end), as.integer(max_threads), config)
+			refnames <- as.list(rep(chrs[j], length(chunks_start)))
+			
+			res <- .Call(r_epiG_haplo_fit_filename_chunks, filename, refGenom_filename, altGenom_filename, refnames,  as.integer(chunks_start),  as.integer(chunks_end), as.integer(max_threads), config)
 		
 		} else {
 			res <- .Call(r_epiG_haplo_fit_filename, filename, refGenom_filename, altGenom_filename, refname,  as.integer(start),  as.integer(end), as.integer(max_threads), as.integer(end-start+1), config)
@@ -70,7 +69,7 @@ epiG <- function(filename, refname, start, end, max_threads = 8L, config, refGen
 	n_chunks <- res$number_of_chunks
 	
 	res.chunks <- list()
-	
+
 	for(i in 1:n_chunks) {
 		
 		res.chunks[[i]] <- list()
@@ -89,7 +88,12 @@ epiG <- function(filename, refname, start, end, max_threads = 8L, config, refGen
 		res.chunks[[i]]$haplotype$start <- res$chain_start[[i]]
 		res.chunks[[i]]$haplotype$end <- res$chain_end[[i]]
 		
-		res.chunks[[i]]$strands <- sapply(1:max(res.chunks[[i]]$haplotype$chain), function(chain) res$strands[[i]][res.chunks[[i]]$haplotype$chain == chain][1])
+		if(length(res.chunks[[i]]$haplotype$chain) > 0) {
+			res.chunks[[i]]$strands <- sapply(1:max(res.chunks[[i]]$haplotype$chain), function(chain) res$strands[[i]][res.chunks[[i]]$haplotype$chain == chain][1])
+		} else {
+			res.chunks[[i]]$strands <- as.character()
+		}
+		
 		res.chunks[[i]]$strands <- factor(res.chunks[[i]]$strands)
 		levels(res.chunks[[i]]$strands) <- c("fwd", "rev")
 		
@@ -118,22 +122,27 @@ epiG <- function(filename, refname, start, end, max_threads = 8L, config, refGen
 #' @param chunks_end 
 #' @param max_threads 
 #' @param config 
-#' @returnType epiG
 #' @return fitted models
 #' 
 #' @author martin
 #' @export
-#' @useDynLib epiG r_epiG_fit_filename_chunks
-epiG.chunks <- function(filename, refname, chunks_start, chunks_end, max_threads = 8L, config, refGenom_filename = config$ref.filename, altGenom_filename = config$alt.filename) {
+#' @useDynLib epiG r_epiG_haplo_fit_filename_chunks
+epiG.chunks <- function(filename, refnames, chunks_start, chunks_end, max_threads = 8L, config, refGenom_filename = config$ref.filename, altGenom_filename = config$alt.filename) {
 	
-	res <- .Call(r_epiG_haplo_fit_filename_chunks, filename, refGenom_filename, altGenom_filename, refname,  as.integer(chunks_start),  as.integer(chunks_end), as.integer(max_threads), config)
+	refnames <- as.list(refnames)
+	
+	if(length(refnames) != length(chunks_start)) {
+		stop("length of refnames not equal to the number of chunks")
+	}
+	
+	res <- .Call(r_epiG_haplo_fit_filename_chunks, filename, refGenom_filename, altGenom_filename, refnames,  as.integer(chunks_start),  as.integer(chunks_end), as.integer(max_threads), config)
 	
 	n_chunks <- res$number_of_chunks
 	
 	res.chunks <- list()
-	
+			
 	for(i in 1:n_chunks) {
-		
+
 		res.chunks[[i]] <- list()
 		
 		res.chunks[[i]]$epiG_version <- packageVersion("epiG")
@@ -141,7 +150,7 @@ epiG.chunks <- function(filename, refname, chunks_start, chunks_end, max_threads
 		
 		res.chunks[[i]]$config <- config
 		res.chunks[[i]]$filename <- filename
-		res.chunks[[i]]$refname <- refname
+		res.chunks[[i]]$refname <- refnames[[i]]
 		
 		res.chunks[[i]]$offset <- res$chunks_start[i]
 		
@@ -150,7 +159,12 @@ epiG.chunks <- function(filename, refname, chunks_start, chunks_end, max_threads
 		res.chunks[[i]]$haplotype$start <- res$chain_start[[i]]
 		res.chunks[[i]]$haplotype$end <- res$chain_end[[i]]
 		
-		res.chunks[[i]]$strands <- sapply(1:max(res.chunks[[i]]$haplotype$chain), function(chain) res$strands[[i]][res.chunks[[i]]$haplotype$chain == chain][1])
+		if(length(res.chunks[[i]]$haplotype$chain) > 0) {
+			res.chunks[[i]]$strands <- sapply(1:max(res.chunks[[i]]$haplotype$chain), function(chain) res$strands[[i]][res.chunks[[i]]$haplotype$chain == chain][1])
+		} else {
+			res.chunks[[i]]$strands <- as.character()
+		}
+		
 		res.chunks[[i]]$strands <- factor(res.chunks[[i]]$strands)
 		levels(res.chunks[[i]]$strands) <- c("fwd", "rev")
 		
@@ -173,7 +187,6 @@ epiG.chunks <- function(filename, refname, chunks_start, chunks_end, max_threads
 #' symbols
 #' 
 #' @param g 
-#' @returnType 
 #' @return symbols
 #' 
 #' @author martin

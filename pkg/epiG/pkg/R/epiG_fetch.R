@@ -26,7 +26,6 @@
 #' @param start 
 #' @param end 
 #' @param chunk_size 
-#' @returnType 
 #' @return chunk positions
 #' 
 #' @author martin
@@ -45,7 +44,6 @@ compute_chunk_positions <- function(filename, refname, start, end, chunk_size) {
 #' @param refname 
 #' @param start 
 #' @param end 
-#' @returnType 
 #' @return info 
 #' 
 #' @author martin
@@ -67,7 +65,6 @@ fetch_reads_info <- function(filename, refname, start, end) {
 #' fetch_reads
 #' 
 #' @param object 
-#' @returnType 
 #' @return epiG model
 #' 
 #' @author martin
@@ -98,7 +95,6 @@ fetch.reads <- function(object) {
 #' 
 #' @param object 
 #' @param filename 
-#' @returnType 
 #' @return epiG model
 #' 
 #' @author martin
@@ -121,11 +117,24 @@ fetch_ref <- function(object) {
 	return(object)
 }
 
+#' Read fasta
+#' 
+#' @param filename 
+#' @param refname 
+#' @param start 
+#' @param len 
+#' @return ??
+#' 
+#' @author martin
+#' @export
+read.fasta <- function(filename, refname, start, len) {
+	return(.Call(r_epiG_read_fasta, filename, refname, as.integer(start), as.integer(len)))
+}
+
 #' fetch_alt
 #' 
 #' @param object 
 #' @param filename 
-#' @returnType 
 #' @return epiG model
 #' 
 #' @author martin

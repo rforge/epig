@@ -140,19 +140,19 @@ SEXP r_epiG_haplo_fit_filename(SEXP r_filename, SEXP r_refGenom_filename, SEXP r
 	return R_NilValue; //Avoid compiler warnings
 }
 
-SEXP epiG_haplo_fit_filename_chunks(SEXP r_filename, SEXP r_refGenom_filename, SEXP r_altGenom_filename, SEXP r_refName, SEXP r_chunks_start, SEXP r_chunks_end, SEXP r_max_threads, SEXP r_config) {
+SEXP epiG_haplo_fit_filename_chunks(SEXP r_filename, SEXP r_refGenom_filename, SEXP r_altGenom_filename, SEXP r_refNames, SEXP r_chunks_start, SEXP r_chunks_end, SEXP r_max_threads, SEXP r_config) {
 
 	const std::string filename = get_value<std::string>(r_filename);
 	const std::string refGenom_filename = get_value<std::string>(r_refGenom_filename);
 	const std::string altGenom_filename = get_value<std::string>(r_altGenom_filename);
-	const std::string refName = get_value<std::string>(r_refName);
+	const field<std::string> refNames = get_field<std::string>(r_refNames);
 	const t_positions chunks_start = get_value<t_positions>(r_chunks_start);
 	const t_positions chunks_end = get_value<t_positions>(r_chunks_end);
 	const t_count max_threads = get_value<t_count>(r_max_threads);
 
 	AlgorithmConfiguration config(r_config);
 
-	chunk_haplo_chain_optimizer opt(filename, refGenom_filename, altGenom_filename, refName, chunks_start, chunks_end, max_threads, config);
+	chunk_haplo_chain_optimizer opt(filename, refGenom_filename, altGenom_filename, refNames, chunks_start, chunks_end, max_threads, config);
 
 	opt.run();
 
@@ -172,11 +172,11 @@ SEXP epiG_haplo_fit_filename_chunks(SEXP r_filename, SEXP r_refGenom_filename, S
     return rObject(res);
 }
 
-SEXP r_epiG_haplo_fit_filename_chunks(SEXP r_filename, SEXP r_refGenom_filename, SEXP r_altGenom_filename, SEXP r_refName, SEXP r_chunks_start, SEXP r_chunks_end, SEXP r_max_threads, SEXP r_config) {
+SEXP r_epiG_haplo_fit_filename_chunks(SEXP r_filename, SEXP r_refGenom_filename, SEXP r_altGenom_filename, SEXP r_refNames, SEXP r_chunks_start, SEXP r_chunks_end, SEXP r_max_threads, SEXP r_config) {
 
 	try {
 
-		return epiG_haplo_fit_filename_chunks(r_filename, r_refGenom_filename, r_altGenom_filename, r_refName, r_chunks_start, r_chunks_end, r_max_threads, r_config);
+		return epiG_haplo_fit_filename_chunks(r_filename, r_refGenom_filename, r_altGenom_filename, r_refNames, r_chunks_start, r_chunks_end, r_max_threads, r_config);
 
 		//Catch unhandled exceptions
 

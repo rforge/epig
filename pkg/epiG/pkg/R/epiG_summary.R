@@ -24,7 +24,7 @@
 #' @param x 
 #' @param ... 
 #' 
-#' @author martin
+#' @author Martin Vincent
 #' @export
 print.epiG <- function(x, ...) {
 	
@@ -51,7 +51,7 @@ print.epiG <- function(x, ...) {
 #' @param x 
 #' @param ... 
 #' 
-#' @author martin
+#' @author Martin Vincent
 #' @export
 print.epiG.config <- function(x, ...) {
 	

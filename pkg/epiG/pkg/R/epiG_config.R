@@ -32,10 +32,9 @@
 #' @param RAA 
 #' @param AAA 
 #' @param RAAA 
-#' @returnType vector
 #' @return prior
 #' 
-#' @author martin
+#' @author Martin Vincent
 #' @export
 create_genotype_prior_ref <- function(scale = 0.5, R = exp(6*scale), RA = exp(5*scale), A = exp(4*scale), AA = exp(3*scale) , RAA = exp(2*scale), AAA = exp(scale), RAAA = 1)  {
 	
@@ -75,10 +74,9 @@ create_genotype_prior_ref <- function(scale = 0.5, R = exp(6*scale), RA = exp(5*
 #' @param ABB 
 #' @param RABB 
 #' @param BB 
-#' @returnType vector
 #' @return prior
 #' 
-#' @author martin
+#' @author Martin Vincent
 #' @export
 create_genotype_prior_alt <- function(scale = 0.5, 
 		R = exp(5*scale), 
@@ -142,10 +140,9 @@ create_genotype_prior_alt <- function(scale = 0.5,
 #' 
 #' @param bisulfite_rate 
 #' @param bisulfite_inap_rate 
-#' @returnType list
 #' @return bisulfite model
 #' 
-#' @author martin
+#' @author Martin Vincent
 #' @export
 create_error_distributions <- function(bisulfite_rate = 0.94, bisulfite_inap_rate = 0.06) {
 	
@@ -190,7 +187,6 @@ create_error_distributions <- function(bisulfite_rate = 0.94, bisulfite_inap_rat
 #' @param lambda 
 #' @param Lmax 
 #' @param x 
-#' @returnType numeric
 #' @return function values
 #' 
 #' @author martin
@@ -208,10 +204,9 @@ exp_decay <- function(lambda = 0.1, Lmax = 100, x = 0:(Lmax-1)) {
 #' @param bisulfite_inap_rate 
 #' @param lambda 
 #' @param Lmax 
-#' @returnType list
 #' @return bisulfite model
 #' 
-#' @author martin
+#' @author Martin Vincent
 #' @export
 create_bisulfite_model <- function(bisulfite_rates = 0.94, bisulfite_inap_rate = 0.06, lambda = 0.1, Lmax = 100) {
 	
@@ -239,10 +234,9 @@ create_bisulfite_model <- function(bisulfite_rates = 0.94, bisulfite_inap_rate =
 #' @param occupancy_weight 
 #' @param reads_hard_limit 
 #' @param verbose 
-#' @returnType algorithm.config
 #' @return configuration
 #' 
-#' @author martin
+#' @author Martin Vincent
 #' @export
 epiG.algorithm.config <- function(ref.file, alt.file, max_iterations = 1e5, prior = list(create_genotype_prior_ref(), create_genotype_prior_alt()), model = create_bisulfite_model(), sequence_quality_adjust = 0.1, haplo_prior = 0.2, ref_prior = 0.9, min_overlap_length = 1, chunk_size = 1000, chunk_method = "reads", reads_hard_limit = 1500, verbose = TRUE) {
 	

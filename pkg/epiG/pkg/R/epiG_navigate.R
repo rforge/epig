@@ -8,7 +8,7 @@
 #' @param object 
 #' @return numeric
 #' 
-#' @author martin
+#' @author Martin Vincent
 #' @export
 start.epiG <- function(object) {
 	
@@ -26,10 +26,9 @@ start.epiG <- function(object) {
 #' end
 #' 
 #' @param object 
-#' @returnType numeric
 #' @return numeric
 #' 
-#' @author martin
+#' @author Martin Vincent
 #' @export
 end.epiG <- function(object) {
 	
@@ -44,6 +43,12 @@ end.epiG <- function(object) {
 	stop("Unknown class")
 }
 
+#' Length of model in base pairs
+#' @param object 
+#' @return Length of model in base pairs
+#' 
+#' @author Martin Vincent
+#' @export
 length.epiG <- function(object) {
 	
 	if(paste(class(object), collapse = ".") == "epiG") {
@@ -57,8 +62,22 @@ length.epiG <- function(object) {
 	stop("Unknown class")
 }
 
+#' Number of reads in model
+#' @param object 
+#' @param ... 
+#' @return ??
+#' 
+#' @author martin
+#' @export
 nread <- function(object, ... ) UseMethod("nread")
 
+#' Number of reads in model
+#' @param object 
+#' @param ... 
+#' @return ??
+#' 
+#' @author martin
+#' @export
 nread.epiG <- function(object, ...)  {
 	
 	if(paste(class(object), collapse = ".") == "epiG") {
@@ -73,9 +92,27 @@ nread.epiG <- function(object, ...)  {
 	
 }
 
+#' genotype
+#' @param object 
+#' @param pos 
+#' @param remove.meth 
+#' @param ... 
+#' @return ??
+#' 
+#' @author martin
+#' @export
 genotype <- function(object, pos, remove.meth, ... ) UseMethod("genotype")
 
-# codeing C = 1, G = 2, A = 3, T = 4
+#' genotype
+#' codeing C = 1, G = 2, A = 3, T = 4
+#' @param object 
+#' @param pos 
+#' @param remove.meth 
+#' @param ... 
+#' @return ??
+#' 
+#' @author martin
+#' @export
 genotype.epiG <- function(object, pos, remove.meth = FALSE, ...) {
 	
 	if(paste(class(object), collapse = ".") == "epiG") {
@@ -102,8 +139,24 @@ genotype.epiG <- function(object, pos, remove.meth = FALSE, ...) {
 	
 }
 
+#' methylation
+#' @param object 
+#' @param pos 
+#' @param ... 
+#' @return ??
+#' 
+#' @author martin
+#' @export
 methylation <- function(object, pos, ... ) UseMethod("methylation")
 
+#' methylation
+#' @param object 
+#' @param pos 
+#' @param ... 
+#' @return ??
+#' 
+#' @author martin
+#' @export
 methylation.epiG <- function(object, pos, ...) {
 	
 	if(paste(class(object), collapse = ".") == "epiG") {
@@ -126,8 +179,24 @@ methylation.epiG <- function(object, pos, ...) {
 	
 }
 
+#' strand
+#' @param object 
+#' @param pos 
+#' @param ... 
+#' @return ??
+#' 
+#' @author martin
+#' @export
 strand <- function(object, pos, ... ) UseMethod("strand")
 
+#' strand
+#' @param object 
+#' @param pos 
+#' @param ... 
+#' @return ??
+#' 
+#' @author martin
+#' @export
 strand.epiG <- function(object, pos, ...) {
 	
 	if(paste(class(object), collapse = ".") == "epiG") {
@@ -150,8 +219,24 @@ strand.epiG <- function(object, pos, ...) {
 	
 }
 
+#' coverage
+#' @param object 
+#' @param pos 
+#' @param ... 
+#' @return ??
+#' 
+#' @author martin
+#' @export
 coverage <- function(object, pos = NULL, ... ) UseMethod("coverage")
 
+#' coverage
+#' @param object 
+#' @param pos 
+#' @param ... 
+#' @return ??
+#' 
+#' @author martin
+#' @export
 coverage.epiG <- function(object, pos = NULL, ...) {
 	
 	if(is.null(pos)) {
@@ -162,6 +247,10 @@ coverage.epiG <- function(object, pos = NULL, ...) {
 		
 		if(start(object) > pos || end(object) < pos) {
 			stop("Position not in range")
+		}
+		
+		if(length(object$read_ids) == 0) {
+			return(0)
 		}
 		
 		return(length(object$read_ids[[pos - start(object)+1]]))
@@ -179,9 +268,29 @@ coverage.epiG <- function(object, pos = NULL, ...) {
 	
 }
 
+#' position.info
+#' @param object 
+#' @param pos 
+#' @param ... 
+#' @return ??
+#' 
+#' @author martin
+#' @export
 position.info <- function(object, pos, ... ) UseMethod("position.info")
 
+#' position.info
+#' @param object 
+#' @param pos 
+#' @param ... 
+#' @return ??
+#' 
+#' @author martin
+#' @export
 position.info.epiG <- function(object, pos, ...) {
+	
+	if(length(pos) == 0) {
+		return(NULL)
+	}
 	
 	if(paste(class(object), collapse = ".") == "epiG") {
 		
@@ -198,16 +307,20 @@ position.info.epiG <- function(object, pos, ...) {
 		
 		if(coverage(object, pos) == 0) {
 			#Return data.frame
-			return(data.frame(position = pos, chain.id = NA, ref = NA, genotype = NA, methylated = NA, strand = NA, coverage = 0))
+			return(data.frame(position = pos, chain.id = NA, ref = NA, alt = NA, genotype = NA, methylated = NA, strand = NA, coverage = 0))
 		}	
 		
 		chains <- sort(object$haplotype$chain[object$read_ids[[pos - start(object)+1]]])
-		
+
+		info.df <- data.frame(position = pos, chain.id = unique(chains), ref = NA, alt = NA, genotype = symbols(genotype(object, pos, remove.met = TRUE)), methylated = methylation(object, pos), strand = strand(object, pos), coverage = sapply(unique(chains), function(x) sum(chains == x)))
+				
 		if(!is.null(object[["ref"]])) {
-			info.df <- data.frame(position = pos, chain.id = unique(chains), ref = symbols(object$ref[pos - object$offset + 1]), genotype = symbols(genotype(object, pos, remove.met = TRUE)), methylated = methylation(object, pos), strand = strand(object, pos), coverage = sapply(unique(chains), function(x) sum(chains == x)))
-		} else {
-			info.df <- data.frame(position = pos, chain.id = unique(chains), ref = NA, genotype = symbols(genotype(object, pos, remove.met = TRUE)), methylated = methylation(object, pos), strand = strand(object, pos), coverage = sapply(unique(chains), function(x) sum(chains == x)))
-		}
+			info.df$ref <- symbols(object$ref[pos - object$offset + 1])
+		} 
+		
+		if(!is.null(object[["alt"]])) {
+			info.df$alt <- symbols(object$alt[pos - object$offset + 1])
+		} 
 		
 		return(info.df)
 		
@@ -232,12 +345,26 @@ position.info.epiG <- function(object, pos, ...) {
 	
 }
 
+#' chain.info
+#' @param object 
+#' @param ... 
+#' @return ??
+#' 
+#' @author martin
+#' @export
 chain.info <- function(object, ... ) UseMethod("chain.info")
 
+#' chain.info
+#' @param object 
+#' @param ... 
+#' @return ??
+#' 
+#' @author martin
+#' @export
 chain.info.epiG <- function(object, ...) {
 	
 	if(paste(class(object), collapse = ".") == "epiG") {
-		return(data.frame(start = object$haplotype$start, end = object$haplotype$end, length = object$haplotype$end - object$haplotype$start + 1, nreads = as.vector(table(object$haplotype$chain)), strand = object$strands))
+		return(data.frame(chain.id = sort(unique(fit$haplotype$chain)), start = object$haplotype$start, end = object$haplotype$end, length = object$haplotype$end - object$haplotype$start + 1, nreads = as.vector(table(object$haplotype$chain)), strand = object$strands))
 	}
 	
 	
@@ -250,7 +377,76 @@ chain.info.epiG <- function(object, ...) {
 	
 }
 
+#' read.info
+#' @param object 
+#' @param ... 
+#' @return ??
+#' 
+#' @author martin
+#' @export
+read.info <- function(object, ... ) UseMethod("read.info")
+
+#' read.info
+#' @param object 
+#' @param ... 
+#' @return ??
+#' 
+#' @author martin
+#' @export
+read.info.epiG <- function(object, ...) {
+	
+	if(!("reads" %in% names(object))) {
+		object <- fetch.reads(object)
+	}
+		
+	if(paste(class(object), collapse = ".") == "epiG") {
+
+		info <- NULL
+		
+		for(idx in 1:nread(object)) {
+			tmp <- data.frame(position = object$reads$position[idx]:(object$reads$position[idx]+object$reads$length[idx]-1) + object$offset, 
+					symbol = symbols(object$reads$reads[[idx]]), read.id = idx, quality = object$reads$quality[[idx]], chain.id=object$haplotype$chain[idx], strand=object$strands[object$haplotype$chain[idx]])
+			
+			info <- rbind(info, tmp)	
+		}
+		
+		return(info)
+	}
+	
+	
+	if(paste(class(object), collapse = ".") == "epiG.chunks") {
+		tmp <- lapply(object, function(x) read.info(x, ...))
+		
+		read.id.offset <- 0
+		for(i in 1:length(tmp)) {
+			tmp[[i]]$read.id <- tmp[[i]]$read.id + read.id.offset
+			read.id.offset <- max(tmp[[i]]$read.id)
+		}
+		
+		return(do.call("rbind", tmp))
+	}
+	
+	stop("Unknown class")
+	
+}
+
+#' Number of chunks 
+#' @param object 
+#' @param pos 
+#' @param ... 
+#' @return ??
+#' 
+#' @author martin
+#' @export
 nchunks <- function(object, pos, ... ) UseMethod("nchunks")
+
+#' Number of chunks 
+#' @param object 
+#' @param ... 
+#' @return ??
+#' 
+#' @author martin
+#' @export
 nchunks.epiG <- function(object, ...) {
 	if(paste(class(object), collapse = ".") == "epiG") {
 		return(1)
@@ -261,7 +457,23 @@ nchunks.epiG <- function(object, ...) {
 		
 }
 
+#' Number of chains
+#' @param object 
+#' @param pos 
+#' @param ... 
+#' @return ??
+#' 
+#' @author martin
+#' @export
 nchain <- function(object, pos, ... ) UseMethod("nchain")
+
+#' Number of chains
+#' @param object 
+#' @param ... 
+#' @return ??
+#' 
+#' @author martin
+#' @export
 nchain.epiG <- function(object, ...) {
 	
 	if(paste(class(object), collapse = ".") == "epiG") {
@@ -274,7 +486,28 @@ nchain.epiG <- function(object, ...) {
 	
 }
 
+#' subregion
+#' @param object 
+#' @param start 
+#' @param end 
+#' @param chop.reads 
+#' @param ... 
+#' @return ??
+#' 
+#' @author martin
+#' @export
 subregion <- function(object, start, end, chop.reads = TRUE, ... ) UseMethod("subregion")
+
+#' subregion
+#' @param object 
+#' @param start 
+#' @param end 
+#' @param chop.reads 
+#' @param ... 
+#' @return ??
+#' 
+#' @author martin
+#' @export
 subregion.epiG <- function(object, start, end, chop.reads = TRUE, ...) {
 	
 	if(paste(class(object), collapse = ".") == "epiG") {

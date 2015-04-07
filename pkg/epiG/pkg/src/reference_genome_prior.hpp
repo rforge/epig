@@ -53,7 +53,8 @@ inline char reference_genome_prior::refmap(char ref, char alt, char base) const 
 	char g = base % 4 + 1; //remove met,
 
 	if(ref == 0) {
-		throw std::runtime_error("No ref found"); //TODO update error msg
+		return  1; //FIXME thing this through + warning msg
+		//throw std::runtime_error("No ref found"); //TODO update error msg
 	}
 
 	if(alt == 0) {

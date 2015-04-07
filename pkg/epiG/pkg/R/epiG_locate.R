@@ -4,6 +4,13 @@
 ###############################################################################
 
 
+#' vector search
+#' @param pattern 
+#' @param text 
+#' @return ??
+#' @author Martin Vincent
+#' @useDynLib epiG r_epiG_locate
+#' @export
 vector.search <- function(pattern, text) {
 	
 	#TODO check input
@@ -18,6 +25,12 @@ vector.search <- function(pattern, text) {
 	return(res)
 }
 
+#' locate GCH positions
+#' @param object 
+#' @return ??
+#' 
+#' @author Martin Vincent
+#' @export
 locate.GCH <- function(object) {
 	
 	if(paste(class(object), collapse = ".") == "epiG") {
@@ -43,6 +56,12 @@ locate.GCH <- function(object) {
 	stop("Unknown class")
 }
 
+#' locate DGCH positions
+#' @param object 
+#' @return ??
+#' 
+#' @author Martin Vincent
+#' @export
 locate.DGCH <- function(object) {
 	
 	if(paste(class(object), collapse = ".") == "epiG") {
@@ -77,6 +96,12 @@ locate.DGCH <- function(object) {
 	stop("Unknown class")
 }
 
+#' locate HCGD positions
+#' @param object 
+#' @return ??
+#' 
+#' @author Martin Vincent
+#' @export
 locate.HCGD <- function(object) {
 	
 	if(paste(class(object), collapse = ".") == "epiG") {
@@ -111,6 +136,12 @@ locate.HCGD <- function(object) {
 	stop("Unknown class")
 }
 
+#' locate SNP positions
+#' @param object 
+#' @return ??
+#' 
+#' @author Martin Vincent
+#' @export
 locate.SNP <- function(object) {
 	
 	if(paste(class(object), collapse = ".") == "epiG") {
