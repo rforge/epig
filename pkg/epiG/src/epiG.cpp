@@ -18,7 +18,6 @@
 //#define DO_TIMING
 #define EPIG_DEBUG
 #define EPIG_USE_OPENMP
-#define PRINT_BACKTRACE
 
 // Debugging
 #ifdef EPIG_DEBUG
@@ -33,10 +32,6 @@
 // Do no debugging
 #define ARMA_NO_DEBUG
 #define NDEBUG
-#endif
-
-#ifdef PRINT_BACKTRACE
-#include "Backtrace.h"
 #endif
 
 #include <string>

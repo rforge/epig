@@ -281,7 +281,6 @@ inline t_count haplo_chain_optimizer::optimize_profile(
 			t_haplotype feasible_haplotypes = compute_feasible_haplotypes(read_start_postion(read_number), read_end_postion(read_number));
 
 			//Add free haplo chain , i.e. a haplo chain with no reads
-			//TODO take first free haplotype
 			feasible_haplotypes.resize(feasible_haplotypes.n_elem + 1);
 			feasible_haplotypes(feasible_haplotypes.n_elem - 1) = max(haplo) + 1;
 
@@ -298,13 +297,6 @@ inline t_count haplo_chain_optimizer::optimize_profile(
 				continue;
 			}
 
-			//TODO remove
-//			cout << " ------------------------------- " << endl;
-//			cout << read_number << " : " << compute_posterior(haplo) << endl;
-//			cout << haplo(read_number) << " -> " << feasible_haplotypes(i) << endl;
-//			cout << trans(feasible_haplotypes) << endl;
-//			cout << trans(loglike) << endl;
-
 			//Get current haplotype chain of read
 			t_haplochain old_chain = haplo(read_number);
 
@@ -318,11 +310,6 @@ inline t_count haplo_chain_optimizer::optimize_profile(
 			changes++;
 
 		}
-
-//TODO remove
-//		t_haplotype u = unique(haplo);
-//		cout << "ch : " << changes << " : " << max(haplo) << " : " << u.n_elem
-//				<< " : " << compute_posterior(haplo) << endl;
 
 		if (changes == 0) {
 			break;
@@ -375,10 +362,6 @@ inline t_count haplo_chain_optimizer::optimize_haplochains(
 
 			t_loglike_vector posterior = profile_posterior(reads_in_chain, feasible_haplotypes);
 
-			//TODO remove
-			//cout << chain_start << " : " << trans(feasible_haplotypes) << endl;
-			//cout << chain_start << " : " << trans(posterior) << endl;
-
 			if (!is_finite(posterior)) {
 				throw std::runtime_error("optimize_profile - internal error");
 			}
@@ -396,11 +379,6 @@ inline t_count haplo_chain_optimizer::optimize_haplochains(
 			//add change
 			changes++;
 		}
-
-		//TODO remove
-		//t_haplotype u = unique(haplo);
-		//cout << "ch : " << changes << " : " << max(haplo) << " : " << u.n_elem
-		//				<< " : " << compute_posterior(haplo) << endl;
 
 		if (changes == 0) {
 			break;

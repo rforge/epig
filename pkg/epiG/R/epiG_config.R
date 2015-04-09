@@ -224,19 +224,25 @@ create_bisulfite_model <- function(bisulfite_rates = 0.94, bisulfite_inap_rate =
 	return(model)
 }
 
-#' epiG.algorithm.config
+
 #' 
+#' @param ref.file 
+#' @param alt.file 
 #' @param max_iterations 
 #' @param prior 
 #' @param model 
-#' @param allele_match_prob 
-#' @param max_alleles 
-#' @param occupancy_weight 
+#' @param sequence_quality_adjust 
+#' @param haplo_prior modeled using a geometric distribution
+#' @param ref_prior 
+#' @param min_overlap_length 
+#' @param chunk_size 
+#' @param chunk_method 
 #' @param reads_hard_limit 
 #' @param verbose 
-#' @return configuration
+#' @returnType 
+#' @return 
 #' 
-#' @author Martin Vincent
+#' @author martin
 #' @export
 epiG.algorithm.config <- function(ref.file, alt.file, max_iterations = 1e5, prior = list(create_genotype_prior_ref(), create_genotype_prior_alt()), model = create_bisulfite_model(), sequence_quality_adjust = 0.1, haplo_prior = 0.2, ref_prior = 0.9, min_overlap_length = 1, chunk_size = 1000, chunk_method = "reads", reads_hard_limit = 1500, verbose = TRUE) {
 	

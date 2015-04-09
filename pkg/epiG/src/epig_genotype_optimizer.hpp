@@ -110,15 +110,6 @@ class genotype_optimizer {
 			double posterior = compute_genotype_prior(genotype, read_counts, haplo_strands, pos);
 			posterior += compute_genotype_loglike(genotype, haplo_at_pos, reads_at_pos, pos);
 
-			//TODO remove
-//			if(pos == 402) {
-//				cout << " --------------------------- " << endl;
-//				cout << trans(conv_to<uvec>::from(genotype));
-//				cout << trans(conv_to<uvec>::from(read_counts));
-//				cout << old_posterior << " : " << posterior << endl;
-//			}
-
-
 			if(posterior > old_posterior) {
 
 				old_posterior = posterior;
@@ -128,15 +119,6 @@ class genotype_optimizer {
 				for(t_index i = 0; i < haplo_at_pos.n_elem; ++i) {
 					genotypes(haplo_at_pos(i))(pos - haplo_chain_start(haplo_at_pos(i))) = genotype(i);
 				}
-
-				//TODO remove
-//				if(pos == 402) {
-//					cout << " ******* " << endl;
-//					cout << pos << endl;
-//					cout << trans(arma::conv_to<uvec>::from(genotype)) << endl;
-//					cout << trans(haplo_strands) << endl;
-//					cout << compute_genotype_prior(genotype, read_counts, haplo_strands, pos) << " : " << posterior << endl;
-//				}
 
 			}
 
