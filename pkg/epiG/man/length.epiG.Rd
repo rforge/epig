@@ -3,7 +3,7 @@
 \alias{length.epiG}
 \title{Length of model in base pairs}
 \usage{
-\method{length}{epiG}(object)
+\method{length}{epiG}(x)
 }
 \arguments{
 \item{object}{}

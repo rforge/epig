@@ -3,6 +3,24 @@
 # Author: martin
 ###############################################################################
 
+#' end position
+#' @param object 
+#' @param ... 
+#' @return ??
+#' 
+#' @author Martin Vincent
+#' @export
+end <- function(object, ... ) UseMethod("end")
+
+#' start position
+#' @param object 
+#' @param ... 
+#' @return ??
+#' 
+#' @author Martin Vincent
+#' @export
+start <- function(object, ... ) UseMethod("start")
+
 #' start
 #' 
 #' @param object 
@@ -10,7 +28,7 @@
 #' 
 #' @author Martin Vincent
 #' @export
-start.epiG <- function(object) {
+start.epiG <- function(object, ...) {
 	
 	if(paste(class(object), collapse = ".") == "epiG") {
 		return(object$offset)
@@ -23,6 +41,8 @@ start.epiG <- function(object) {
 	stop("Unknown class")
 }
 
+
+
 #' end
 #' 
 #' @param object 
@@ -30,7 +50,7 @@ start.epiG <- function(object) {
 #' 
 #' @author Martin Vincent
 #' @export
-end.epiG <- function(object) {
+end.epiG <- function(object, ...) {
 	
 	if(paste(class(object), collapse = ".") == "epiG") {
 		return(start(object) + length(object)-1L)
@@ -49,14 +69,14 @@ end.epiG <- function(object) {
 #' 
 #' @author Martin Vincent
 #' @export
-length.epiG <- function(object) {
+length.epiG <- function(x) {
 	
-	if(paste(class(object), collapse = ".") == "epiG") {
-		return(object$length)
+	if(paste(class(x), collapse = ".") == "epiG") {
+		return(x$length)
 	}
 	
-	if(paste(class(object), collapse = ".") == "epiG.chunks") {
-		return(sum(sapply(object, length)))
+	if(paste(class(x), collapse = ".") == "epiG.chunks") {
+		return(sum(sapply(x, length)))
 	}
 	
 	stop("Unknown class")
@@ -364,7 +384,12 @@ chain.info <- function(object, ... ) UseMethod("chain.info")
 chain.info.epiG <- function(object, ...) {
 	
 	if(paste(class(object), collapse = ".") == "epiG") {
-		return(data.frame(chain.id = sort(unique(fit$haplotype$chain)), start = object$haplotype$start, end = object$haplotype$end, length = object$haplotype$end - object$haplotype$start + 1, nreads = as.vector(table(object$haplotype$chain)), strand = object$strands))
+		return(data.frame(chain.id = sort(unique(object$haplotype$chain)), 
+						start = object$haplotype$start, 
+						end = object$haplotype$end, 
+						length = object$haplotype$end - object$haplotype$start + 1, 
+						nreads = as.vector(table(object$haplotype$chain)), 
+						strand = object$strands))
 	}
 	
 	

@@ -54,7 +54,7 @@ epiG <- function(filename, refname, start, end, max_threads = 8L, config, refGen
 			chunks_start <- s[1:(length(s)-1)]
 			chunks_end <- s[2:length(s)]-1L
 			chunks_start[1] <- start
-			refnames <- as.list(rep(chrs[j], length(chunks_start)))
+			refnames <- as.list(rep(refname, length(chunks_start)))
 			
 			res <- .Call(r_epiG_haplo_fit_filename_chunks, filename, refGenom_filename, altGenom_filename, refnames,  as.integer(chunks_start),  as.integer(chunks_end), as.integer(max_threads), config)
 		

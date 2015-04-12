@@ -3,7 +3,7 @@
 \alias{end.epiG}
 \title{end}
 \usage{
-\method{end}{epiG}(object)
+\method{end}{epiG}(object, ...)
 }
 \arguments{
 \item{object}{}

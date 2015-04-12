@@ -224,7 +224,7 @@ create_bisulfite_model <- function(bisulfite_rates = 0.94, bisulfite_inap_rate =
 	return(model)
 }
 
-
+#' Create a epiG configuration
 #' 
 #' @param ref.file 
 #' @param alt.file 
@@ -239,8 +239,7 @@ create_bisulfite_model <- function(bisulfite_rates = 0.94, bisulfite_inap_rate =
 #' @param chunk_method 
 #' @param reads_hard_limit 
 #' @param verbose 
-#' @returnType 
-#' @return 
+#' @return epiG configuration
 #' 
 #' @author martin
 #' @export
