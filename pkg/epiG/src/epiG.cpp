@@ -41,19 +41,20 @@
 #include "rtools.h"
 #include "simple_timer.h"
 
-#include "math_tools.hpp"
-#include "types.hpp"
-#include "bamReader.hpp"
+#include "math_tools.h"
+#include "types.h"
+#include "seq_tools.h"
+#include "bam_reader.h"
 #include "epiG_algorithm_config.h"
-#include "alignment_data.hpp"
-#include "reference_genome_prior.hpp"
-#include "haplo_chain_optimizer.hpp"
-#include "epig_genotype_optimizer.hpp"
-#include "chunk_haplo_chain_optimizer.hpp"
+#include "alignment_data.h"
+#include "prior.h"
+#include "chain_opt.h"
+#include "genotype_opt.h"
+#include "chunked_chain_opt.h"
 
 //// R interface
-#include "epiG_haplo_R_interface.hpp"
-#include "epiG_fetch_R_interface.hpp"
+#include "rinterface/epiG.h"
+#include "rinterface/fetch.h"
 
 // vector search
-#include "vector_search.hpp"
+#include "vector_search.h"

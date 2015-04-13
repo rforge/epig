@@ -10,7 +10,6 @@
 
 #include <vector>
 #include <string>
-#include "seq_tools.hpp"
 #include "samtools/bam.h"
 #include "samtools/sam.h"
 

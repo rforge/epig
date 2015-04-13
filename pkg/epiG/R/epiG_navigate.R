@@ -4,6 +4,7 @@
 ###############################################################################
 
 #' end position
+#' 
 #' @param object 
 #' @param ... 
 #' @return ??
@@ -13,6 +14,7 @@
 end <- function(object, ... ) UseMethod("end")
 
 #' start position
+#' 
 #' @param object 
 #' @param ... 
 #' @return ??
@@ -332,7 +334,7 @@ position.info.epiG <- function(object, pos, ...) {
 		
 		chains <- sort(object$haplotype$chain[object$read_ids[[pos - start(object)+1]]])
 
-		info.df <- data.frame(position = pos, chain.id = unique(chains), ref = NA, alt = NA, genotype = symbols(genotype(object, pos, remove.met = TRUE)), methylated = methylation(object, pos), strand = strand(object, pos), coverage = sapply(unique(chains), function(x) sum(chains == x)))
+		info.df <- data.frame(position = pos, chain.id = unique(chains), ref = NA, alt = NA, genotype = symbols(genotype(object, pos, remove.meth = TRUE)), methylated = methylation(object, pos), strand = strand(object, pos), coverage = sapply(unique(chains), function(x) sum(chains == x)))
 				
 		if(!is.null(object[["ref"]])) {
 			info.df$ref <- symbols(object$ref[pos - object$offset + 1])
@@ -506,7 +508,7 @@ nchain.epiG <- function(object, ...) {
 	}
 	
 	if(paste(class(object), collapse = ".") == "epiG.chunks") {
-		return(sapply(object, nchains))
+		return(sapply(object, nchain))
 	}
 	
 }

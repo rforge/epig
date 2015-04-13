@@ -11,7 +11,6 @@
 //TODO simplify
 //TODO priors when no ref available - prior(pos, genotype)
 
-#include "seq_tools.hpp"
 
 class reference_genome_prior {
 

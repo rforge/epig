@@ -69,7 +69,7 @@ char seq_base_to_int(const char & bit4_code) {
 
 		default:
 			//TODO debug guard
-            cout << "seq_base_to_int" << " : " << static_cast<int>(bit4_code) << endl;
+            //cout << "seq_base_to_int" << " : " << static_cast<int>(bit4_code) << endl;
 			throw std::runtime_error("Error: Unknown 4bit code in bam file");
 		}
 

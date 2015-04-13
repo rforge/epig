@@ -200,11 +200,11 @@ exp_decay <- function(lambda = 0.1, Lmax = 100, x = 0:(Lmax-1)) {
 
 #' create_bisulfite_model
 #' 
-#' @param bisulfite_rate 
+#' @param bisulfite_rates 
 #' @param bisulfite_inap_rate 
 #' @param lambda 
 #' @param Lmax 
-#' @return bisulfite model
+#' @return ...
 #' 
 #' @author Martin Vincent
 #' @export

@@ -7,7 +7,7 @@ create_bisulfite_model(bisulfite_rates = 0.94, bisulfite_inap_rate = 0.06,
   lambda = 0.1, Lmax = 100)
 }
 \arguments{
-\item{bisulfite_rate}{}
+\item{bisulfite_rates}{}
 
 \item{bisulfite_inap_rate}{}
 
@@ -16,7 +16,7 @@ create_bisulfite_model(bisulfite_rates = 0.94, bisulfite_inap_rate = 0.06,
 \item{Lmax}{}
 }
 \value{
-bisulfite model
+...
 }
 \description{
 create_bisulfite_model
