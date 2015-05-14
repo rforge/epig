@@ -10,9 +10,7 @@ URL:
 License: GPL (>= 2)
 LazyLoad: yes
 Depends:
-    R (>= 3.0.0),
-    RcppProgress,
-    RcppArmadillo
+    R (>= 3.0.0)
 LinkingTo: Rcpp,
     RcppProgress,
     RcppArmadillo
