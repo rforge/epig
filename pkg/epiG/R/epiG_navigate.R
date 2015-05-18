@@ -89,7 +89,7 @@ length.epiG <- function(x) {
 #' @param ... 
 #' @return ??
 #' 
-#' @author martin
+#' @author Martin Vincent
 #' @export
 nread <- function(object, ... ) UseMethod("nread")
 
@@ -98,7 +98,7 @@ nread <- function(object, ... ) UseMethod("nread")
 #' @param ... 
 #' @return ??
 #' 
-#' @author martin
+#' @author Martin Vincent
 #' @export
 nread.epiG <- function(object, ...)  {
 	
@@ -121,7 +121,7 @@ nread.epiG <- function(object, ...)  {
 #' @param ... 
 #' @return ??
 #' 
-#' @author martin
+#' @author Martin Vincent
 #' @export
 genotype <- function(object, pos, remove.meth, ... ) UseMethod("genotype")
 
@@ -133,7 +133,7 @@ genotype <- function(object, pos, remove.meth, ... ) UseMethod("genotype")
 #' @param ... 
 #' @return ??
 #' 
-#' @author martin
+#' @author Martin Vincent
 #' @export
 genotype.epiG <- function(object, pos, remove.meth = FALSE, ...) {
 	
@@ -167,7 +167,7 @@ genotype.epiG <- function(object, pos, remove.meth = FALSE, ...) {
 #' @param ... 
 #' @return ??
 #' 
-#' @author martin
+#' @author Martin Vincent
 #' @export
 methylation <- function(object, pos, ... ) UseMethod("methylation")
 
@@ -177,7 +177,7 @@ methylation <- function(object, pos, ... ) UseMethod("methylation")
 #' @param ... 
 #' @return ??
 #' 
-#' @author martin
+#' @author Martin Vincent
 #' @export
 methylation.epiG <- function(object, pos, ...) {
 	

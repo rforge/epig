@@ -19,10 +19,10 @@
 #     along with this program.  If not, see <http:#www.gnu.org/licenses/>
 #
 
-#' epiG
+#' Fit an epiG model
 #' 
-#' @param filename 
-#' @param refGenom_filename 
+#' @param filename BAM file with aligned and ordered reads
+#' @param refGenom_filename
 #' @param altGenom_filename 
 #' @param refname 
 #' @param start 
@@ -31,7 +31,7 @@
 #' @param config 
 #' @return fitted model
 #' 
-#' @author martin
+#' @author Martin Vincent
 #' @export
 #' @useDynLib epiG r_epiG_haplo_fit_filename
 #' @useDynLib epiG r_epiG_haplo_fit_filename_chunks

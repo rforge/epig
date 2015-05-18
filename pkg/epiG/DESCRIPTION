@@ -14,4 +14,10 @@ Depends:
 LinkingTo: Rcpp,
     RcppProgress,
     RcppArmadillo
-Collate: 'epiG_config.R' 'epiG_fetch.R' 'epiG_haplo_fit.R' 'epiG_locate.R' 'epiG_navigate.R' 'epiG_summary.R'
+Collate:
+    'epiG_config.R'
+    'epiG_fetch.R'
+    'epiG_haplo_fit.R'
+    'epiG_locate.R'
+    'epiG_navigate.R'
+    'epiG_summary.R'
