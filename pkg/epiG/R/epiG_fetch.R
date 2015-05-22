@@ -94,7 +94,6 @@ fetch.reads <- function(object) {
 #' fetch_ref
 #' 
 #' @param object 
-#' @param filename 
 #' @return epiG model
 #' 
 #' @author martin
@@ -134,7 +133,6 @@ read.fasta <- function(filename, refname, start, len) {
 #' fetch_alt
 #' 
 #' @param object 
-#' @param filename 
 #' @return epiG model
 #' 
 #' @author martin

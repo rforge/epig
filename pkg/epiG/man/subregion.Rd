@@ -22,6 +22,6 @@
   subregion
 }
 \author{
-  martin
+  Martin Vincent
 }
 

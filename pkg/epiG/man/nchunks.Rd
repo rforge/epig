@@ -18,6 +18,6 @@
   Number of chunks
 }
 \author{
-  martin
+  Martin Vincent
 }
 

@@ -2,10 +2,12 @@
 \alias{end.epiG}
 \title{end}
 \usage{
-  end.epiG(object, ...)
+  \method{end}{epiG} (object, ...)
 }
 \arguments{
   \item{object}{}
+
+  \item{...}{}
 }
 \value{
   numeric

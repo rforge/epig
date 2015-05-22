@@ -2,7 +2,7 @@
 \alias{nread.epiG}
 \title{Number of reads in model}
 \usage{
-  nread.epiG(object, ...)
+  \method{nread}{epiG} (object, ...)
 }
 \arguments{
   \item{object}{}

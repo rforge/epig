@@ -2,8 +2,8 @@
 \alias{subregion.epiG}
 \title{subregion}
 \usage{
-  subregion.epiG(object, start, end, chop.reads = TRUE,
-    ...)
+  \method{subregion}{epiG} (object, start, end,
+    chop.reads = TRUE, ...)
 }
 \arguments{
   \item{object}{}
@@ -23,6 +23,6 @@
   subregion
 }
 \author{
-  martin
+  Martin Vincent
 }
 

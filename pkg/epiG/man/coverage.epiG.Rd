@@ -2,7 +2,7 @@
 \alias{coverage.epiG}
 \title{coverage}
 \usage{
-  coverage.epiG(object, pos = NULL, ...)
+  \method{coverage}{epiG} (object, pos = NULL, ...)
 }
 \arguments{
   \item{object}{}
@@ -18,6 +18,6 @@
   coverage
 }
 \author{
-  martin
+  Martin Vincent
 }
 

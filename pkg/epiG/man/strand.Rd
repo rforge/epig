@@ -18,6 +18,6 @@
   strand
 }
 \author{
-  martin
+  Martin Vincent
 }
 

@@ -2,7 +2,7 @@
 \alias{strand.epiG}
 \title{strand}
 \usage{
-  strand.epiG(object, pos, ...)
+  \method{strand}{epiG} (object, pos, ...)
 }
 \arguments{
   \item{object}{}
@@ -18,6 +18,6 @@
   strand
 }
 \author{
-  martin
+  Martin Vincent
 }
 

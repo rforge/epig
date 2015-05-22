@@ -6,8 +6,6 @@
 }
 \arguments{
   \item{object}{}
-
-  \item{filename}{}
 }
 \value{
   epiG model

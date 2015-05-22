@@ -3,7 +3,8 @@
 \title{genotype
 codeing C = 1, G = 2, A = 3, T = 4}
 \usage{
-  genotype.epiG(object, pos, remove.meth = FALSE, ...)
+  \method{genotype}{epiG} (object, pos,
+    remove.meth = FALSE, ...)
 }
 \arguments{
   \item{object}{}

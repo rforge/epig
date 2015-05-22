@@ -14,7 +14,7 @@
 
   \item{altGenom_filename}{}
 
-  \item{refname}{}
+  \item{refnames}{}
 
   \item{chunks_start}{}
 

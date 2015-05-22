@@ -2,7 +2,7 @@
 \alias{nchunks.epiG}
 \title{Number of chunks}
 \usage{
-  nchunks.epiG(object, ...)
+  \method{nchunks}{epiG} (object, ...)
 }
 \arguments{
   \item{object}{}
@@ -16,6 +16,6 @@
   Number of chunks
 }
 \author{
-  martin
+  Martin Vincent
 }
 

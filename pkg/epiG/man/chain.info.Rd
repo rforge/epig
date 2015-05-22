@@ -16,6 +16,6 @@
   chain.info
 }
 \author{
-  martin
+  Martin Vincent
 }
 

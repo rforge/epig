@@ -26,9 +26,11 @@ start <- function(object, ... ) UseMethod("start")
 #' start
 #' 
 #' @param object 
+#' @param ... 
 #' @return numeric
 #' 
 #' @author Martin Vincent
+#' @method start epiG
 #' @export
 start.epiG <- function(object, ...) {
 	
@@ -48,9 +50,11 @@ start.epiG <- function(object, ...) {
 #' end
 #' 
 #' @param object 
+#' @param ...
 #' @return numeric
 #' 
 #' @author Martin Vincent
+#' @method end epiG
 #' @export
 end.epiG <- function(object, ...) {
 	
@@ -66,10 +70,12 @@ end.epiG <- function(object, ...) {
 }
 
 #' Length of model in base pairs
-#' @param object 
+#' 
+#' @param x 
 #' @return Length of model in base pairs
 #' 
 #' @author Martin Vincent
+#' @method length epiG
 #' @export
 length.epiG <- function(x) {
 	
@@ -99,6 +105,7 @@ nread <- function(object, ... ) UseMethod("nread")
 #' @return ??
 #' 
 #' @author Martin Vincent
+#' @method nread epiG
 #' @export
 nread.epiG <- function(object, ...)  {
 	
@@ -134,6 +141,7 @@ genotype <- function(object, pos, remove.meth, ... ) UseMethod("genotype")
 #' @return ??
 #' 
 #' @author Martin Vincent
+#' @method genotype epiG
 #' @export
 genotype.epiG <- function(object, pos, remove.meth = FALSE, ...) {
 	
@@ -178,6 +186,7 @@ methylation <- function(object, pos, ... ) UseMethod("methylation")
 #' @return ??
 #' 
 #' @author Martin Vincent
+#' @method methylation epiG
 #' @export
 methylation.epiG <- function(object, pos, ...) {
 	
@@ -207,7 +216,7 @@ methylation.epiG <- function(object, pos, ...) {
 #' @param ... 
 #' @return ??
 #' 
-#' @author martin
+#' @author Martin Vincent
 #' @export
 strand <- function(object, pos, ... ) UseMethod("strand")
 
@@ -217,7 +226,8 @@ strand <- function(object, pos, ... ) UseMethod("strand")
 #' @param ... 
 #' @return ??
 #' 
-#' @author martin
+#' @author Martin Vincent
+#' @method strand epiG
 #' @export
 strand.epiG <- function(object, pos, ...) {
 	
@@ -247,7 +257,7 @@ strand.epiG <- function(object, pos, ...) {
 #' @param ... 
 #' @return ??
 #' 
-#' @author martin
+#' @author Martin Vincent
 #' @export
 coverage <- function(object, pos = NULL, ... ) UseMethod("coverage")
 
@@ -257,7 +267,8 @@ coverage <- function(object, pos = NULL, ... ) UseMethod("coverage")
 #' @param ... 
 #' @return ??
 #' 
-#' @author martin
+#' @author Martin Vincent
+#' @method coverage epiG
 #' @export
 coverage.epiG <- function(object, pos = NULL, ...) {
 	
@@ -296,7 +307,7 @@ coverage.epiG <- function(object, pos = NULL, ...) {
 #' @param ... 
 #' @return ??
 #' 
-#' @author martin
+#' @author Martin Vincent
 #' @export
 position.info <- function(object, pos, ... ) UseMethod("position.info")
 
@@ -306,7 +317,8 @@ position.info <- function(object, pos, ... ) UseMethod("position.info")
 #' @param ... 
 #' @return ??
 #' 
-#' @author martin
+#' @author Martin Vincent
+#' @method position.info epiG
 #' @export
 position.info.epiG <- function(object, pos, ...) {
 	
@@ -372,7 +384,7 @@ position.info.epiG <- function(object, pos, ...) {
 #' @param ... 
 #' @return ??
 #' 
-#' @author martin
+#' @author Martin Vincent
 #' @export
 chain.info <- function(object, ... ) UseMethod("chain.info")
 
@@ -381,7 +393,8 @@ chain.info <- function(object, ... ) UseMethod("chain.info")
 #' @param ... 
 #' @return ??
 #' 
-#' @author martin
+#' @author Martin Vincent
+#' @method chain.info epiG
 #' @export
 chain.info.epiG <- function(object, ...) {
 	
@@ -409,7 +422,7 @@ chain.info.epiG <- function(object, ...) {
 #' @param ... 
 #' @return ??
 #' 
-#' @author martin
+#' @author Martin Vincent
 #' @export
 read.info <- function(object, ... ) UseMethod("read.info")
 
@@ -418,7 +431,8 @@ read.info <- function(object, ... ) UseMethod("read.info")
 #' @param ... 
 #' @return ??
 #' 
-#' @author martin
+#' @author Martin Vincent
+#' @method read.info epiG
 #' @export
 read.info.epiG <- function(object, ...) {
 	
@@ -463,7 +477,7 @@ read.info.epiG <- function(object, ...) {
 #' @param ... 
 #' @return ??
 #' 
-#' @author martin
+#' @author Martin Vincent
 #' @export
 nchunks <- function(object, pos, ... ) UseMethod("nchunks")
 
@@ -472,7 +486,8 @@ nchunks <- function(object, pos, ... ) UseMethod("nchunks")
 #' @param ... 
 #' @return ??
 #' 
-#' @author martin
+#' @author Martin Vincent
+#' @method nchunks epiG
 #' @export
 nchunks.epiG <- function(object, ...) {
 	if(paste(class(object), collapse = ".") == "epiG") {
@@ -490,7 +505,7 @@ nchunks.epiG <- function(object, ...) {
 #' @param ... 
 #' @return ??
 #' 
-#' @author martin
+#' @author Martin Vincent
 #' @export
 nchain <- function(object, pos, ... ) UseMethod("nchain")
 
@@ -499,7 +514,8 @@ nchain <- function(object, pos, ... ) UseMethod("nchain")
 #' @param ... 
 #' @return ??
 #' 
-#' @author martin
+#' @author Martin Vincent
+#' @method nchain epiG
 #' @export
 nchain.epiG <- function(object, ...) {
 	
@@ -521,7 +537,7 @@ nchain.epiG <- function(object, ...) {
 #' @param ... 
 #' @return ??
 #' 
-#' @author martin
+#' @author Martin Vincent
 #' @export
 subregion <- function(object, start, end, chop.reads = TRUE, ... ) UseMethod("subregion")
 
@@ -533,7 +549,8 @@ subregion <- function(object, start, end, chop.reads = TRUE, ... ) UseMethod("su
 #' @param ... 
 #' @return ??
 #' 
-#' @author martin
+#' @author Martin Vincent
+#' @method subregion epiG
 #' @export
 subregion.epiG <- function(object, start, end, chop.reads = TRUE, ...) {
 	

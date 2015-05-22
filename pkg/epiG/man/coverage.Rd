@@ -18,6 +18,6 @@
   coverage
 }
 \author{
-  martin
+  Martin Vincent
 }
 

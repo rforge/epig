@@ -16,6 +16,6 @@
   read.info
 }
 \author{
-  martin
+  Martin Vincent
 }
 

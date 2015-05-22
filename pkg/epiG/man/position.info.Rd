@@ -18,6 +18,6 @@
   position.info
 }
 \author{
-  martin
+  Martin Vincent
 }
 

@@ -2,7 +2,7 @@
 \alias{position.info.epiG}
 \title{position.info}
 \usage{
-  position.info.epiG(object, pos, ...)
+  \method{position.info}{epiG} (object, pos, ...)
 }
 \arguments{
   \item{object}{}
@@ -18,6 +18,6 @@
   position.info
 }
 \author{
-  martin
+  Martin Vincent
 }
 

@@ -2,10 +2,12 @@
 \alias{start.epiG}
 \title{start}
 \usage{
-  start.epiG(object, ...)
+  \method{start}{epiG} (object, ...)
 }
 \arguments{
   \item{object}{}
+
+  \item{...}{}
 }
 \value{
   numeric

@@ -2,7 +2,7 @@
 \alias{chain.info.epiG}
 \title{chain.info}
 \usage{
-  chain.info.epiG(object, ...)
+  \method{chain.info}{epiG} (object, ...)
 }
 \arguments{
   \item{object}{}
@@ -16,6 +16,6 @@
   chain.info
 }
 \author{
-  martin
+  Martin Vincent
 }
 

@@ -117,7 +117,7 @@ epiG <- function(filename, refname, start, end, max_threads = 8L, config, refGen
 #' @param filename 
 #' @param refGenom_filename 
 #' @param altGenom_filename 
-#' @param refname 
+#' @param refnames 
 #' @param chunks_start 
 #' @param chunks_end 
 #' @param max_threads 

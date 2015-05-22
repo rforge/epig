@@ -18,6 +18,6 @@
   Number of chains
 }
 \author{
-  martin
+  Martin Vincent
 }
 

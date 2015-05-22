@@ -2,7 +2,7 @@
 \alias{nchain.epiG}
 \title{Number of chains}
 \usage{
-  nchain.epiG(object, ...)
+  \method{nchain}{epiG} (object, ...)
 }
 \arguments{
   \item{object}{}
@@ -16,6 +16,6 @@
   Number of chains
 }
 \author{
-  martin
+  Martin Vincent
 }
 

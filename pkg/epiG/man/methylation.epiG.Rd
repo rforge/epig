@@ -2,7 +2,7 @@
 \alias{methylation.epiG}
 \title{methylation}
 \usage{
-  methylation.epiG(object, pos, ...)
+  \method{methylation}{epiG} (object, pos, ...)
 }
 \arguments{
   \item{object}{}

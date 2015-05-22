@@ -2,7 +2,7 @@
 \alias{read.info.epiG}
 \title{read.info}
 \usage{
-  read.info.epiG(object, ...)
+  \method{read.info}{epiG} (object, ...)
 }
 \arguments{
   \item{object}{}
@@ -16,6 +16,6 @@
   read.info
 }
 \author{
-  martin
+  Martin Vincent
 }
 
